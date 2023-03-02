@@ -2,9 +2,9 @@
 #Date: February 27, 2023
 #Project: Squirrel Census Analysis
 
-#Objective: Join the squirrel data and the park data
+#Objective: Join the squirrel data and the park data and create derived variables
 
-#Output:
+#Output:"Data/squirrel_analysis_data.csv"
 
 #Setup:
 require(tidyverse)

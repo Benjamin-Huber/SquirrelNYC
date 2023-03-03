@@ -9,19 +9,26 @@
 #Setup:
 require(tidyverse)
 require(gee)
+require(gtsummary)
+setwd("C:/Users/bdh22/Dropbox/P8170S23/P8170-Lectures/SquirrelCodingSample/SquirrelNYC")
 squirrel_analysis_data <- read.csv("Data/squirrel_analysis_data.csv")
 
-gee(eat_forag ~ busy_park, id = Park.ID, data = squirrel_analysis_data) %>%
+
+gee(eat_forag ~ busy_park, id = Park.ID, family = "binomial", data = squirrel_analysis_data) %>%
   summary()
 
-gee(above_ground ~ busy_park, id = Park.ID, data = squirrel_analysis_data) %>%
+gee(above_ground ~ busy_park, id = Park.ID, family = "binomial", data = squirrel_analysis_data) %>%
   summary()
-
-gee(above_ground ~ busy_park*eat_forag, id = Park.ID, data = squirrel_analysis_data) %>%
-  summary()
-
 
 glm(above_ground~eat_forag, data = squirrel_analysis_data, family = "binomial") %>%
   summary()
 
-#Model Investigation
+
+squirrel_analysis_data %>%
+  select(eat_forag, above_ground, busy_park)%>%
+  tbl_summary(by = busy_park) %>%
+  add_overall()
+
+
+#setwd("C:/Users/bdh22/Dropbox/P8170S23/P8170-Lectures/SquirrelCodingSample/SquirrelNYC/Output")
+#knitr::spin("C:/Users/bdh22/Dropbox/P8170S23/P8170-Lectures/SquirrelCodingSample/SquirrelNYC/Analysis/Analysis.R")

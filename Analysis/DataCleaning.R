@@ -40,3 +40,8 @@ parks <- parks %>% mutate(
 squirrel_analysis_data <- squirrel_data %>% left_join(parks %>% select(Park.ID, busy_park))
 
 write.csv(squirrel_analysis_data, "Data/squirrel_analysis_data.csv")
+
+
+
+
+
